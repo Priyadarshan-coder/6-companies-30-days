@@ -1,0 +1,22 @@
+class Solution {
+    private static void helper(List<Integer>curr,List<List<Integer>>ans,int k,int n,int last)
+    {
+        if(k==0 && n==0)
+        {
+            ans.add(new ArrayList(curr));
+            return ;
+        }
+        for(int i=last+1;i<=9;i++)
+        {
+            curr.add(i);
+            helper(curr,ans,k-1,n-i,i);
+            curr.remove(curr.size()-1);
+        }
+    }
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<Integer>curr=new ArrayList<Integer>();
+        List<List<Integer>>ans=new ArrayList<>();
+        helper(curr,ans,k,n,0);
+        return ans;
+    }
+}
