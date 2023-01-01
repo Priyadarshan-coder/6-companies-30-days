@@ -1,0 +1,26 @@
+class Solution {
+    int max;
+    private int helper(int sum,int f,int n,int k,int []nums)
+    {
+        if(k==0)
+        {
+            return f;
+        }
+       int c= helper(sum,f,n,k-1,nums)+sum-(n*nums[n-k]);
+        max=Math.max(max,c);
+        return c;
+    }
+    public int maxRotateFunction(int[] nums) {
+        int n=nums.length;
+        int sum=0;
+        int f=0;
+        for(int i=0;i<n;i++)
+        {
+            sum+=nums[i];
+            f+=i*nums[i];
+        }
+        max=Integer.MIN_VALUE;
+        helper(sum,f,n,n,nums);
+        return max;
+    }
+}
